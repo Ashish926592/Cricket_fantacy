@@ -116,8 +116,8 @@
             }
             document.getElementById("teamName1").innerHTML = `${players[0]} Create your team<br><br>`
             document.getElementById("team1").style.display = "block";
-            document.getElementById("teamPriview").style.display = "block";
-            document.getElementById("teamScored").style.display = "block";
+
+
         }
 
 
@@ -611,14 +611,14 @@
         }
         function summary() {
             listArr = [...listArr1, ...listArr2, ...listArr3];
-            if(sum <= 100 && listArr.length == 11) {   
+            if (sum <= 100 && listArr.length == 11) {
                 document.getElementById('secondteam').disabled = false;
             }
-           else if(sum > 100) {
+            else if (sum > 100) {
                 alert("Maximum Credit is 100 please recreate your team");
                 // return false;
             }
-            else if(listArr.length !== 11) {
+            else if (listArr.length !== 11) {
                 // console.log(listArr.length);
                 alert("Team size must be 11");
                 // return false;
@@ -937,11 +937,11 @@
         function summary1() {
             if (sum > 100) {
                 alert("Maximum Credit is 100 please recreate your team")
-            } 
-             if (listArr.length !== 11) {
+            }
+            if (listArr.length !== 11) {
                 alert("Team size must be 11");
             }
-           
+
             newArr = [...newArr1, ...newArr2, ...newArr3];
             sum = 0;
 
@@ -962,6 +962,9 @@
             creditData1();
             makeCaptain1();
             makeVCaptain1();
+            document.getElementById("teamPriview").style.display = "block";
+            document.getElementById("btn1").style.display = "block";
+            document.getElementById("teamScored").style.display = "block";
 
 
         }
@@ -970,10 +973,10 @@
             let button1 = "";
             button1 = `  <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Team1()">Team1</button>
             <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Team2()">Team2</button><br><br>
-            <button class="btn btn-primary" id="btn1" style="border: 2px solid black;"  onclick="play()" type="button">Let's Play</button>
-            <button class="btn btn-primary" id="btn2" style="border: 2px solid black; display: none;" onclick="play1()" type="button">Let's Play Team2</button>
+
             `;
             document.getElementById("button1").innerHTML = button1;
+            document.getElementById("team2").style.display = "none";
         }
 
 
@@ -1016,8 +1019,8 @@
 
                 document.getElementById("teamList").innerHTML = list;
                 document.getElementById("teamList").style.display = "block";
-                document.getElementById('team1').style.display = "none";
-                document.getElementById('team2').style.display = "none";
+                // document.getElementById('team1').style.display = "none";
+                // document.getElementById('team2').style.display = "none";
             }
 
 
@@ -1061,8 +1064,8 @@
 
                 document.getElementById("teamList").innerHTML = list;
                 document.getElementById("teamList").style.display = "block";
-                document.getElementById('team1').style.display = "none";
-                document.getElementById('team2').style.display = "none";
+                // document.getElementById('team1').style.display = "none";
+                // document.getElementById('team2').style.display = "none";
             }
 
         }
@@ -1122,6 +1125,7 @@
         let total_point2 = 0;
         let total_point3 = 0;
         let total_point4 = 0;
+
         function shotType() {
             randomShot = Math.floor(Math.random() * 7) + 1;
             switch (randomShot) {
@@ -1305,6 +1309,7 @@
                 alert("Team All Out");
                 return false;
             }
+            let p1 = "";
 
             listArr = [...listArr1, ...listArr2, ...listArr3];
             let p = "";
@@ -1349,27 +1354,31 @@
                 }
 
                 let obj2 = {
-                        name: listArr[bowlerWicket].name,
-                        run: total_run1,
-                        ball: ballCount1,
-                        four: four_count1,
-                        six: six_count1,
-                        point: total_point1
+                    name: listArr[bowlerWicket].name,
+                    run: total_run1,
+                    ball: ballCount1,
+                    four: four_count1,
+                    six: six_count1,
+                    point: total_point1
 
-                    }
-                    let index = arrScore1.findIndex(obj => obj.name === obj2.name);
-                    if (index !== -1) {
-                        arrScore1[index] = obj2;
-                    } else {
-                        arrScore1.push(obj2);
-                    }
+                }
+                let index = arrScore1.findIndex(obj => obj.name === obj2.name);
+                if (index !== -1) {
+                    arrScore1[index] = obj2;
+                } else {
+                    arrScore1.push(obj2);
+                }
                 if (playedShot != "Wicket") {
                     p += `<span class="score">${shot1} </span>`;
+
+                    p1 += ` <p class="card-text text-center">Over-[${currentOver}.${currentBall + 1
+                        }] :  ${myOver[currentOver][currentBall]
+                        } , ${new Date().toLocaleString()}  </p>`;
                     document.getElementById("batter").value = listArr[bowlerWicket].name;
                     console.log(arrScore1);
 
                 } else {
-                   
+
                     bowlerWicket++;
                     Wicket1++;
                     total_run1 = 0;
@@ -1380,6 +1389,8 @@
 
 
                     p += `<span class="score">${shot1} </span>`;
+
+                    p1 += ` <p class="card-text text-danger text-center">Over-[${currentOver}.${currentBall + 1}] :  ${myOver[currentOver][currentBall]} , ${new Date().toLocaleString()} `;
                     document.getElementById("batter").value = listArr[bowlerWicket].name;
                 }
                 currentBall++;
@@ -1399,6 +1410,7 @@
                 // console.log(arrScore1);
                 // console.log(arrScore2);
                 document.getElementById("over").innerHTML += p;
+                document.getElementById("team_over1").innerHTML += p1;
                 disableButton();
             } else {
                 document.getElementById("hitted").disabled = true;
@@ -1438,6 +1450,7 @@
 
             newArr = [...newArr1, ...newArr2, ...newArr3];
             let p = "";
+            let p3 = "";
             document.getElementById("scorecardTeam2").value = `${runTeam2}/${wicketCount2} `;
             if (currentOver1 < over1 && currentBall1 < ball1) {
                 myOver1[currentOver1][currentBall1] = playedShot;
@@ -1474,26 +1487,30 @@
                     document.getElementById("tscorecard2").value = total2;
                 }
                 let obj4 = {
-                        name: newArr[bowlerWicket1].name,
-                        run: total_run2,
-                        ball: ballCount2,
-                        four: four_count2,
-                        six: six_count2,
-                        point: total_point3
+                    name: newArr[bowlerWicket1].name,
+                    run: total_run2,
+                    ball: ballCount2,
+                    four: four_count2,
+                    six: six_count2,
+                    point: total_point3
 
-                    }
-                    let index = arrScore3.findIndex(obj => obj.name === obj4.name);
-                    if (index !== -1) {
-                        arrScore3[index] = obj4;
-                    } else {
-                        arrScore3.push(obj4);
-                    }
+                }
+                let index = arrScore3.findIndex(obj => obj.name === obj4.name);
+                if (index !== -1) {
+                    arrScore3[index] = obj4;
+                } else {
+                    arrScore3.push(obj4);
+                }
 
                 if (playedShot != "Wicket") {
                     p += `<span class="score">${shot2} </span>`;
+
+                    p3 += ` <p class="card-text text-center">Over-[${currentOver1}.${currentBall1 + 1
+                        }] :  ${myOver1[currentOver1][currentBall1]
+                        } , ${new Date().toLocaleString()}  </p>`;
                     document.getElementById("batter1").value = newArr[bowlerWicket1].name;
                 } else {
-                    
+
                     bowlerWicket1++;
                     Wicket2++;
                     total_run2 = 0;
@@ -1503,6 +1520,7 @@
                     ballCount2 = 0;
 
                     p += `<span class="score">${shot2} </span>`;
+                    p3 += ` <p class="card-text text-danger text-center">Over-[${currentOver1}.${currentBall1 + 1}] :  ${ myOver1[currentOver1][currentBall1]} , ${new Date().toLocaleString()} `; 
                     document.getElementById("batter1").value = newArr[bowlerWicket1].name;
                 }
                 currentBall1++;
@@ -1521,6 +1539,7 @@
                 }
 
                 document.getElementById("over1").innerHTML += p;
+                document.getElementById("team_over2").innerHTML += p3;
                 disableButton1();
                 // console.log(arrScore3);
                 // console.log(arrScore4);
@@ -1704,24 +1723,7 @@
 
             </div>
         </div>
-        <div class="d-flex">
-            <div id="teamPriview" style="display: none;margin-left: 30px;margin-top: 20px;">
-                <button type="button" class="btn btn-primary" style="border: 2px solid black;"
-                    onclick="TeamPriview()">TeamPriview</button>
-                <div id="button1" style="margin-top: 10px;">
 
-                </div>
-            </div>
-
-            <div id="teamScored" style="display: none;margin-left: 306px;margin-top: 20px;">
-                <button type="button" class="btn btn-primary" style="border: 2px solid black; margin-left: 70px;"
-                    onclick="TeamScored()">TeamScored</button>
-                <div id="button2" style="margin-top: 20px;">
-
-                </div>
-            </div>
-
-        </div>
 
 
 
@@ -1753,6 +1755,8 @@
             <div id="chooseC" style="display: none;">Choose Captain:-<div class="col-auto w-50">
                     <label class="visually-hidden" for="captain1">Preference</label>
                     <select class="form-select" id="captain1" onchange="chooseCaptain1(this.value)">
+                        <option selected>Captain</option>
+
 
                     </select>
                 </div>
@@ -1760,6 +1764,8 @@
             <div id="chooseVC" style="display: none;">Choose Vice Captain:-<div class="col-auto w-50">
                     <label class="visually-hidden" for="captain1">Preference</label>
                     <select class="form-select" id="vCaptain1" onchange="chooseVCaptain1(this.value)">
+                        <option selected>VCaptain</option>
+
 
                     </select>
                 </div>
@@ -1804,124 +1810,162 @@
             </div>
         </div>
 
-        <div class="d-flex flex-row row justify-content-center">
-            <div class="col-lg-3" id="teamList" style="display: none;">
+
+
+
+
+
+    </div>
+
+
+
+    <div class="d-flex">
+        <div id="teamPriview" style="display: none;margin-left: 30px;margin-top: 20px;">
+            <button type="button" class="btn btn-primary" style="border: 2px solid black;"
+                onclick="TeamPriview()">TeamPriview</button>
+            <div id="button1" style="margin-top: 10px;">
 
             </div>
         </div>
 
-        <div id="start" style="display: none;">
-            <div class="d-flex flex-row justify-content-evenly my-4">
-                <div class="input-group mb-3  w-25">
-                    <span class="input-group-text ">Batsman</span>
-                    <input type="text" class="form-control" id="batter" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-                <div class="input-group mb-3  w-25">
-                    <span class="input-group-text">Bowler</span>
-                    <input type="text" class="form-control" id="bowler" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-            </div>
-            <div class="d-flex flex-row justify-content-center my-4">
-                <div class="input-group mb-3  w-25">
-                    <span class="input-group-text " id="player11"></span>
-                    <input type="text" class="form-control" id="scorecard1" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-
-                <div class="input-group mb-3  w-25 ms-3">
-                    <span class="input-group-text " id="player22"></span>
-                    <input type="text" class="form-control" id="scorecard2" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-
+        <div id="teamScored" style="display: none;margin-left: 306px;margin-top: 20px;">
+            <button type="button" class="btn btn-primary" style="border: 2px solid black; margin-left: 70px;"
+                onclick="TeamScored()">TeamScored</button>
+            <div id="button2" style="margin-top: 20px;">
 
             </div>
-
-            <div class="d-flex flex-row justify-content-center my-4">
-                <div class="input-group mb-3  w-25 px-3">
-                    <span class="input-group-text ">Scorecard</span>
-                    <input type="text" class="form-control" id="scorecardTeam1" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-            </div>
-
-
-            <div class="d-flex flex-row justify-content-center my-4">
-                <div class="input-group mb-3 w-25 px-3 ">
-                    <button class="btn btn-primary" type="button" id="hitted" onclick="hit()">Bowl</button>
-                    <input type="text" class="form-control" placeholder="" readonly="true" id="shots"
-                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                </div>
-
-            </div>
-
-            <div class="container">
-                <div class="over" id="over">
-
-                </div>
-            </div>
-
-
         </div>
 
-        <div id="end" style="display: none;">
-            <div class="d-flex flex-row justify-content-evenly my-4">
-                <div class="input-group mb-3  w-25">
-                    <span class="input-group-text ">Batsman</span>
-                    <input type="text" class="form-control" id="batter1" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-                <div class="input-group mb-3  w-25">
-                    <span class="input-group-text">Bowler</span>
-                    <input type="text" class="form-control" id="bowler1" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-            </div>
-            <div class="d-flex flex-row justify-content-center my-4">
-                <div class="input-group mb-3  w-25">
-                    <span class="input-group-text " id="one"></span>
-                    <input type="text" class="form-control" id="tscorecard1" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-
-                <div class="input-group mb-3  w-25 ms-3">
-                    <span class="input-group-text " id="two"></span>
-                    <input type="text" class="form-control" id="tscorecard2" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-
-
-            </div>
-
-            <div class="d-flex flex-row justify-content-center my-4">
-                <div class="input-group mb-3  w-25 px-3">
-                    <span class="input-group-text ">Scorecard</span>
-                    <input type="text" class="form-control" id="scorecardTeam2" readonly="true"
-                        aria-label="Sizing example input" aria-describedby="button-addon1">
-                </div>
-            </div>
-
-
-            <div class="d-flex flex-row justify-content-center my-4">
-                <div class="input-group mb-3 w-25 px-3 ">
-                    <button class="btn btn-primary" type="button" id="hitted1" onclick="hit1()">Bowl</button>
-                    <input type="text" class="form-control" placeholder="" readonly="true" id="shots1"
-                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                </div>
-
-            </div>
-
-            <div class="container">
-                <div class="over" id="over1">
-
-                </div>
-            </div>
+    </div>
+    <div class="d-flex flex-row row justify-content-center">
+        <div class="col-lg-3" id="teamList" style="display: none;">
 
         </div>
     </div>
+    <div class="d-flex flex-row row justify-content-center">
+        <button class="btn btn-primary" id="btn1" style="border: 2px solid black;display: none;" onclick="play()"
+            type="button">Let's Play</button>
+        <button class="btn btn-primary" id="btn2" style="border: 2px solid black; display: none;" onclick="play1()"
+            type="button">Let's Play Team2</button>
+    </div>
 
+    <div id="start" style="display: none;">
+        <div class="d-flex flex-row justify-content-evenly my-4">
+            <div class="input-group mb-3  w-25">
+                <span class="input-group-text ">Batsman</span>
+                <input type="text" class="form-control" id="batter" readonly="true" aria-label="Sizing example input"
+                    aria-describedby="button-addon1">
+            </div>
+            <div class="input-group mb-3  w-25">
+                <span class="input-group-text">Bowler</span>
+                <input type="text" class="form-control" id="bowler" readonly="true" aria-label="Sizing example input"
+                    aria-describedby="button-addon1">
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-center my-4">
+            <div class="input-group mb-3  w-25">
+                <span class="input-group-text " id="player11"></span>
+                <input type="text" class="form-control" id="scorecard1" readonly="true"
+                    aria-label="Sizing example input" aria-describedby="button-addon1">
+            </div>
+
+            <div class="input-group mb-3  w-25 ms-3">
+                <span class="input-group-text " id="player22"></span>
+                <input type="text" class="form-control" id="scorecard2" readonly="true"
+                    aria-label="Sizing example input" aria-describedby="button-addon1">
+            </div>
+
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-center my-4">
+            <div class="input-group mb-3  w-25 px-3">
+                <span class="input-group-text ">Scorecard</span>
+                <input type="text" class="form-control" id="scorecardTeam1" readonly="true"
+                    aria-label="Sizing example input" aria-describedby="button-addon1">
+            </div>
+        </div>
+
+
+        <div class="d-flex flex-row justify-content-center my-4">
+            <div class="input-group mb-3 w-25 px-3 ">
+                <button class="btn btn-primary" type="button" id="hitted" onclick="hit()">Bowl</button>
+                <input type="text" class="form-control" placeholder="" readonly="true" id="shots"
+                    aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="over" id="over">
+
+            </div>
+        </div>
+
+        <div class="container" id="team_over1">
+
+        </div>
+
+
+    </div>
+    <div id="end" style="display: none;">
+        <div class="d-flex flex-row justify-content-evenly my-4">
+            <div class="input-group mb-3  w-25">
+                <span class="input-group-text ">Batsman</span>
+                <input type="text" class="form-control" id="batter1" readonly="true" aria-label="Sizing example input"
+                    aria-describedby="button-addon1">
+            </div>
+            <div class="input-group mb-3  w-25">
+                <span class="input-group-text">Bowler</span>
+                <input type="text" class="form-control" id="bowler1" readonly="true" aria-label="Sizing example input"
+                    aria-describedby="button-addon1">
+            </div>
+        </div>
+        <div class="d-flex flex-row justify-content-center my-4">
+            <div class="input-group mb-3  w-25">
+                <span class="input-group-text " id="one"></span>
+                <input type="text" class="form-control" id="tscorecard1" readonly="true"
+                    aria-label="Sizing example input" aria-describedby="button-addon1">
+            </div>
+
+            <div class="input-group mb-3  w-25 ms-3">
+                <span class="input-group-text " id="two"></span>
+                <input type="text" class="form-control" id="tscorecard2" readonly="true"
+                    aria-label="Sizing example input" aria-describedby="button-addon1">
+            </div>
+
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-center my-4">
+            <div class="input-group mb-3  w-25 px-3">
+                <span class="input-group-text ">Scorecard</span>
+                <input type="text" class="form-control" id="scorecardTeam2" readonly="true"
+                    aria-label="Sizing example input" aria-describedby="button-addon1">
+            </div>
+        </div>
+
+
+        <div class="d-flex flex-row justify-content-center my-4">
+            <div class="input-group mb-3 w-25 px-3 ">
+                <button class="btn btn-primary" type="button" id="hitted1" onclick="hit1()">Bowl</button>
+                <input type="text" class="form-control" placeholder="" readonly="true" id="shots1"
+                    aria-label="Example text with button addon" aria-describedby="button-addon1">
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="over" id="over1">
+
+            </div>
+        </div>
+
+        <div class="container" id="team_over2">
+
+        </div>
+
+    </div>
 
 
     <div class="container1" style="display: none;" id="hello">
@@ -1964,6 +2008,8 @@
 
 
     </div>
+
+
 
 
 
