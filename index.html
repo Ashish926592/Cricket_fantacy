@@ -1279,7 +1279,7 @@
             return shot3;
         }
 
-        let over = 5;
+        let over = 1;
         let ball = 6;
         let myOver = [];
         let currentBall = 0;
@@ -1422,7 +1422,7 @@
             }
         }
 
-        let over1 = 5;
+        let over1 = 1;
         let ball1 = 6;
         let myOver1 = [];
         let currentBall1 = 0;
@@ -1547,10 +1547,16 @@
                 alert("2nd inning is finished");
                 document.getElementById("hitted1").disabled = true;
                 document.getElementById("end").style.display = "none";
+                document.getElementById("result").style.display = "block";
 
 
-                document.getElementById("hello").style.display = "block";
-                if (total1 > total2) {
+              
+                return false;
+            }
+        }
+        function result(){
+            document.getElementById("hello").style.display = "block";
+            if (total1 > total2) {
                     let win = `Congratulations!!!!! ${player1} Win`
                     document.getElementById("middle").innerHTML = win;
                 } else if (total1 < total2) {
@@ -1560,8 +1566,6 @@
                     let win = `Not win any team scores are same of both teams`
                     document.getElementById("middle").innerHTML = win;
                 }
-                return false;
-            }
         }
         function disableButton() {
             const button = document.getElementById("hitted");
@@ -1963,6 +1967,10 @@
 
         <div class="container" id="team_over2">
 
+        </div>
+
+        <div id="result" class="d-flex flex-row justify-content-center" style="display: none;">
+            <button type="button" class="btn btn-success" style="border: 2px solid black;" onclick="result()">Result</button>
         </div>
 
     </div>
