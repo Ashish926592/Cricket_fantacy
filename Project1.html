@@ -102,9 +102,9 @@
 
             if (player1 == '' && player2 == '') {
                 alert("Please enter team name");
-                console.log("hello");
+                // console.log("hello");
             }
-            else if(toss == 1) {
+            else if (toss == 1) {
 
                 players = [player1, player2];
                 let winner = player1 + " " + "has won the toss.";
@@ -611,18 +611,19 @@
         }
         function summary() {
             listArr = [...listArr1, ...listArr2, ...listArr3];
-            if (sum > 100) {
-                alert("Maximum Credit is 100 please recreate your team");
-                return false;
+            if(sum <= 100 && listArr.length == 11) {   
+                document.getElementById('secondteam').disabled = false;
             }
-            if (listArr.length !== 11) {
+           else if(sum > 100) {
+                alert("Maximum Credit is 100 please recreate your team");
+                // return false;
+            }
+            else if(listArr.length !== 11) {
                 // console.log(listArr.length);
-                alert("Team size must be 111");
-                return false;
+                alert("Team size must be 11");
+                // return false;
             }
             sum = 0;
-
-            document.getElementById('secondteam').disabled = false
             let list = "";
             for (let i of listArr) {
 
@@ -938,6 +939,8 @@
                 alert("Maximum Credit is 100 please recreate your team")
             } else if (listArr.length !== 11) {
                 alert("Team size must be 11");
+            }else if(sum <= 100 && listArr.length == 11) {   
+                document.getElementById('btn1').disabled = false;
             }
             newArr = [...newArr1, ...newArr2, ...newArr3];
             sum = 0;
@@ -967,13 +970,13 @@
             let button1 = "";
             button1 = `  <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Team1()">Team1</button>
             <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Team2()">Team2</button><br><br>
-            <button class="btn btn-primary" id="btn1" style="border: 2px solid black;" onclick="play()" type="button">Let's Play</button>
+            <button class="btn btn-primary" id="btn1" style="border: 2px solid black;" disabled="true" onclick="play()" type="button">Let's Play</button>
             <button class="btn btn-primary" id="btn2" style="border: 2px solid black; display: none;" onclick="play1()" type="button">Let's Play Team2</button>
             `;
             document.getElementById("button1").innerHTML = button1;
         }
 
-       
+
 
         function Team1() {
             listArr = [...listArr1, ...listArr2, ...listArr3];
@@ -1113,8 +1116,8 @@
         var randomShot;
         var runTeam1 = 0;
         var runTeam2 = 0;
-        var  wicketCount1 = 0;
-        var  wicketCount2 = 0;
+        var wicketCount1 = 0;
+        var wicketCount2 = 0;
         let total_point1 = 0;
         let total_point2 = 0;
         let total_point3 = 0;
@@ -1138,7 +1141,7 @@
                     point1 = 2;
                     point2 = 0;
                     runTeam1 += 2;
-                 
+
                     break
                 case 3:
                     shot = "Three"
@@ -1147,17 +1150,17 @@
                     point1 = 3;
                     point2 = 0;
                     runTeam1 += 3;
-                  
+
                     break;
                 case 4:
                     shot = "Four"
-                    run1  = 4
+                    run1 = 4
                     shot1 = 4
                     point1 = 5;
                     point2 = 0;
                     runTeam1 += 4;
                     four_count1 += 1;
-                
+
                     break
                 case 5:
                     shot = "Six"
@@ -1167,7 +1170,7 @@
                     point2 = 0;
                     runTeam1 += 6;
                     six_count1 += 1;
-                 
+
                     break;
                 case 6:
                     shot = "Dot"
@@ -1176,7 +1179,7 @@
                     point2 = 1;
                     point1 = 0;
                     runTeam1 += 0;
-                 
+
                     break
                 case 7:
                     shot = "Wicket"
@@ -1185,11 +1188,11 @@
                     point1 = -2;
                     point2 = 10;
                     wicketCount1 += 1;
-                  
+
                     break
             }
 
-           
+
             return shot;
 
 
@@ -1199,7 +1202,7 @@
         let point3;
         let point4;
         let run2;
-       
+
 
         function shotType1() {
             randomShot = Math.floor(Math.random() * 7) + 1;
@@ -1211,7 +1214,7 @@
                     point3 = 1;
                     point4 = 0;
                     runTeam2 += 1;
-               
+
                     break;
                 case 2:
                     shot3 = "Double"
@@ -1220,7 +1223,7 @@
                     point3 = 2;
                     point4 = 0;
                     runTeam2 += 2;
-                 
+
                     break
                 case 3:
                     shot3 = "Three"
@@ -1229,7 +1232,7 @@
                     point3 = 3;
                     point4 = 0;
                     runTeam2 += 3;
-              
+
                     break;
                 case 4:
                     shot3 = "Four"
@@ -1239,7 +1242,7 @@
                     point4 = 0;
                     four_count2 += 1;
                     runTeam2 += 4;
-                  
+
                     break
                 case 5:
                     shot3 = "Six"
@@ -1247,9 +1250,9 @@
                     shot2 = 6
                     point3 = 8;
                     point4 = 0;
-                    six_count2 += 1; 
+                    six_count2 += 1;
                     runTeam2 += 6;
-             
+
                     break;
                 case 6:
                     shot3 = "Dot"
@@ -1257,7 +1260,7 @@
                     shot2 = '.'
                     point4 = 1;
                     point3 = 0;
-                   
+
                     break
                 case 7:
                     shot3 = "Wicket"
@@ -1266,7 +1269,7 @@
                     point3 = -2;
                     point4 = 10;
                     wicketCount2 += 1;
-                 
+
                     break
             }
             return shot3;
@@ -1279,10 +1282,12 @@
         let currentOver = 0;
         let count = 0;
         let bowlerWicket = 0;
+        let Wicket1 = 0;
         let total1 = 0;
         let total2 = 0;
         let arrScore1 = [];
         let arrScore2 = [];
+        let ballCount1 = 0;
         for (let i = 0; i < over; i++) {
             myOver[i] = new Array(ball).fill(null);
         }
@@ -1307,92 +1312,100 @@
             if (currentOver < over && currentBall < ball) {
                 myOver[currentOver][currentBall] = playedShot;
                 document.getElementById("bowler").value = newArr2[count].name;
-                
+
                 if (listArr[bowlerWicket].name == captainName1) {
                     total1 = total1 + point1 * 2;
                     total2 = total2 + point2;
                     total_run1 = total_run1 + run1;
                     total_point1 = total_point1 + point1 * 2;
                     total_point2 = total_point2 + point2;
+                    ballCount1++;
                     document.getElementById("scorecard1").value = total1;
                     document.getElementById("scorecard2").value = total2;
 
-                   
+
 
                 } else if (listArr[bowlerWicket].name == vCaptainName1) {
                     total1 = total1 + point1 * 1.5;
                     total2 = total2 + point2;
                     total_run1 = total_run1 + run1;
-
                     total_point1 = total_point1 + point1 * 1.5;
                     total_point2 = total_point2 + point2;
-              
-                   
+                    ballCount1++;
                     document.getElementById("scorecard1").value = total1;
                     document.getElementById("scorecard2").value = total2;
 
-                   
+
 
                 } else {
                     total1 = total1 + point1;
                     total2 = total2 + point2;
                     total_run1 = total_run1 + run1;
-
                     total_point1 = total_point1 + point1;
                     total_point2 = total_point2 + point2;
-                  
-                
-                 
+                    ballCount1++;
                     document.getElementById("scorecard1").value = total1;
                     document.getElementById("scorecard2").value = total2;
-
-                   
                 }
+
+                let obj2 = {
+                        name: listArr[bowlerWicket].name,
+                        run: total_run1,
+                        ball: ballCount1,
+                        four: four_count1,
+                        six: six_count1,
+                        point: total_point1
+
+                    }
+                    let index = arrScore1.findIndex(obj => obj.name === obj2.name);
+                    if (index !== -1) {
+                        arrScore1[index] = obj2;
+                    } else {
+                        arrScore1.push(obj2);
+                    }
                 if (playedShot != "Wicket") {
                     p += `<span class="score">${shot1} </span>`;
                     document.getElementById("batter").value = listArr[bowlerWicket].name;
-                } else {
-                    let obj2 ={
-                    name:listArr[bowlerWicket].name,
-                    run:total_run1,
-                    four:four_count1,
-                    six:six_count1,
-                    point:total_point1
+                    console.log(arrScore1);
 
-                }
-                arrScore1.push(obj2);
-                 bowlerWicket++;
-                 total_run1 = 0;
-                 four_count1 = 0;    
-                 six_count1 =0;
-                 total_point1 = 0;
-                 
+                } else {
+                   
+                    bowlerWicket++;
+                    Wicket1++;
+                    total_run1 = 0;
+                    four_count1 = 0;
+                    six_count1 = 0;
+                    total_point1 = 0;
+                    ballCount1 = 0;
+
+
                     p += `<span class="score">${shot1} </span>`;
                     document.getElementById("batter").value = listArr[bowlerWicket].name;
                 }
                 currentBall++;
                 if (currentBall === ball) {
-                    let obj3 ={
-                    name:newArr2[count].name,
-                    point:total_point2,
-                    wicket:bowlerWicket
-                }
-                arrScore2.push(obj3);
+                    let obj3 = {
+                        name: newArr2[count].name,
+                        point: total_point2,
+                        wicket: Wicket1
+                    }
+                    arrScore2.push(obj3);
                     currentBall = 0;
                     total_point2 = 0;
+                    Wicket1 = 0;
                     currentOver++;
                     count++;
                 }
-                console.log(arrScore1);
-                console.log(arrScore2);
+                // console.log(arrScore1);
+                // console.log(arrScore2);
                 document.getElementById("over").innerHTML += p;
                 disableButton();
             } else {
+                document.getElementById("hitted").disabled = true;
                 alert("1st inning is finished");
                 alert("2nd team let's play");
                 document.getElementById("btn1").style.display = "none";
                 document.getElementById("btn2").style.display = "block";
-                document.getElementById("hitted").disabled = true;
                 return false;
             }
         }
@@ -1404,8 +1417,10 @@
         let currentOver1 = 0;
         let count1 = 0;
         let bowlerWicket1 = 0;
+        let Wicket2 = 0;
         let arrScore3 = [];
         let arrScore4 = [];
+        let ballCount2 = 0;
 
         for (let i = 0; i < over1; i++) {
             myOver1[i] = new Array(ball1).fill(null);
@@ -1432,10 +1447,10 @@
                     total2 = total2 + point3 * 2;
                     total1 = total1 + point4;
                     total_run2 = total_run2 + run2;
-                     total_point3 = total_point3 + point3 * 2;
-                     total_point4 = total_point4+ point4;
+                    total_point3 = total_point3 + point3 * 2;
+                    total_point4 = total_point4 + point4;
+                    ballCount2++;
                     document.getElementById("tscorecard1").value = total1;
-
                     document.getElementById("tscorecard2").value = total2;
 
                 } else if (newArr[bowlerWicket1].name == vCaptainName2) {
@@ -1443,7 +1458,8 @@
                     total1 = total1 + point4;
                     total_run2 = total_run2 + run2;
                     total_point3 = total_point3 + point3 * 1.5;
-                     total_point4 = total_point4+ point4;
+                    total_point4 = total_point4 + point4;
+                    ballCount2++;
                     document.getElementById("tscorecard1").value = total1;
                     document.getElementById("tscorecard2").value = total2;
 
@@ -1452,56 +1468,68 @@
                     total1 = total1 + point4;
                     total_run2 = total_run2 + run2;
                     total_point3 = total_point3 + point3;
-                     total_point4 = total_point4+ point4;
+                    total_point4 = total_point4 + point4;
+                    ballCount2++;
                     document.getElementById("tscorecard1").value = total1;
                     document.getElementById("tscorecard2").value = total2;
                 }
+                let obj4 = {
+                        name: newArr[bowlerWicket1].name,
+                        run: total_run2,
+                        ball: ballCount2,
+                        four: four_count2,
+                        six: six_count2,
+                        point: total_point3
+
+                    }
+                    let index = arrScore3.findIndex(obj => obj.name === obj4.name);
+                    if (index !== -1) {
+                        arrScore3[index] = obj4;
+                    } else {
+                        arrScore3.push(obj4);
+                    }
 
                 if (playedShot != "Wicket") {
                     p += `<span class="score">${shot2} </span>`;
                     document.getElementById("batter1").value = newArr[bowlerWicket1].name;
                 } else {
-                    let obj4 ={
-                    name:newArr[bowlerWicket1].name,
-                    run:total_run2,
-                    four:four_count2,
-                    six:six_count2,
-                    point:total_point3
-
-                }
-                arrScore3.push(obj4);
+                    
                     bowlerWicket1++;
+                    Wicket2++;
                     total_run2 = 0;
                     four_count2 = 0;
                     six_count2 = 0;
                     total_point3 = 0;
-                   
+                    ballCount2 = 0;
+
                     p += `<span class="score">${shot2} </span>`;
                     document.getElementById("batter1").value = newArr[bowlerWicket1].name;
                 }
                 currentBall1++;
                 if (currentBall1 === ball1) {
-                    let obj5 ={
-                    name:listArr2[count1].name,
-                    point:total_point4,
-                    wicket:bowlerWicket1
-                }
-                arrScore4.push(obj5);
+                    let obj5 = {
+                        name: listArr2[count1].name,
+                        point: total_point4,
+                        wicket: Wicket2
+                    }
+                    arrScore4.push(obj5);
                     currentBall1 = 0;
                     total_point4 = 0;
                     currentOver1++;
+                    Wicket2 = 0;
                     count1++;
                 }
-                
-                // console.log(p);
+
                 document.getElementById("over1").innerHTML += p;
                 disableButton1();
-                console.log(arrScore3);
-                console.log(arrScore4);
+                // console.log(arrScore3);
+                // console.log(arrScore4);
             } else {
                 alert("2nd inning is finished");
                 document.getElementById("hitted1").disabled = true;
-                document.getElementById("moto").style.display = "none";
+                document.getElementById("end").style.display = "none";
+
+
                 document.getElementById("hello").style.display = "block";
                 if (total1 > total2) {
                     let win = `Congratulations!!!!! ${player1} Win`
@@ -1544,6 +1572,113 @@
             document.getElementById("button2").innerHTML = button2;
         }
 
+        function Team1Scored() {
+            if (arrScore1.length == 0 || arrScore2 == 0) {
+                alert("please play first game then show the score");
+            } else {
+                let table = ` <thead>
+                  <tr>
+                    <th scope="col">Batter</th>
+                    <th scope="col">R</th>
+                    <th scope="col">B</th>
+                    <th scope="col">4s</th>
+                    <th scope="col">6s</th>
+                    <th scope="col">Point</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">`
+                let tr = "";
+                for (let i of arrScore1) {
+                    tr = tr + "<tr>";
+                    tr = tr + `<td>${i.name}</td>`;
+                    tr += `<td>${i.run}</td>`;
+                    tr += `<td>${i.ball}</td>`;
+                    tr += `<td>${i.four}</td>`;
+                    tr += `<td>${i.six}</td>`;
+                    tr += `<td>${i.point}</td>`;
+                    tr = tr + "</tr>";
+                };
+                table = table + tr + "</tbody>";
+                document.getElementById("table1").innerHTML = table;
+
+                let table2 = ` <thead>
+                  <tr>
+                    <th scope="col">Bowler</th>
+                    <th scope="col">w</th>
+                    <th scope="col">Point</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">`
+                let tr1 = "";
+                for (let i of arrScore2) {
+                    tr1 = tr1 + "<tr>";
+                    tr1 = tr1 + `<td>${i.name}</td>`;
+                    tr1 += `<td>${i.wicket}</td>`;
+                    tr1 += `<td>${i.point}</td>`;
+                    tr1 = tr1 + "</tr>";
+                };
+                table2 = table2 + tr1 + "</tbody>";
+                document.getElementById("table2").innerHTML = table2;
+
+            }
+
+        }
+
+        function Team2Scored() {
+            if (arrScore3 == 0 || arrScore4 == 0) {
+                alert("please play first game then show the score");
+            } else {
+
+                let table = ` <thead>
+                  <tr>
+                    <th scope="col">Batter</th>
+                    <th scope="col">R</th>
+                    <th scope="col">B</th>
+                    <th scope="col">4s</th>
+                    <th scope="col">6s</th>
+                    <th scope="col">Point</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">`
+                let tr = "";
+                for (let i of arrScore3) {
+                    tr = tr + "<tr>";
+                    tr = tr + `<td>${i.name}</td>`;
+                    tr += `<td>${i.run}</td>`;
+                    tr += `<td>${i.ball}</td>`;
+                    tr += `<td>${i.four}</td>`;
+                    tr += `<td>${i.six}</td>`;
+                    tr += `<td>${i.point}</td>`;
+                    tr = tr + "</tr>";
+                };
+                table = table + tr + "</tbody>";
+                document.getElementById("table3").innerHTML = table;
+
+                let table2 = ` <thead>
+                  <tr>
+                    <th scope="col">Bowler</th>
+                    <th scope="col">w</th>
+                    <th scope="col">Point</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">`
+                let tr1 = "";
+                for (let i of arrScore4) {
+                    tr1 = tr1 + "<tr>";
+                    tr1 = tr1 + `<td>${i.name}</td>`;
+                    tr1 += `<td>${i.wicket}</td>`;
+                    tr1 += `<td>${i.point}</td>`;
+                    tr1 = tr1 + "</tr>";
+                };
+                table2 = table2 + tr1 + "</tbody>";
+                document.getElementById("table4").innerHTML = table2;
+            }
+
+
+        }
+
+
+
 
         function main() {
             location.reload();
@@ -1574,7 +1709,7 @@
                 <button type="button" class="btn btn-primary" style="border: 2px solid black;"
                     onclick="TeamPriview()">TeamPriview</button>
                 <div id="button1" style="margin-top: 10px;">
-    
+
                 </div>
             </div>
 
@@ -1582,12 +1717,12 @@
                 <button type="button" class="btn btn-primary" style="border: 2px solid black; margin-left: 70px;"
                     onclick="TeamScored()">TeamScored</button>
                 <div id="button2" style="margin-top: 20px;">
-    
+
                 </div>
             </div>
 
         </div>
-       
+
 
 
         <div class="mt-5" id="team1" style="display: none;">
@@ -1711,7 +1846,7 @@
                         aria-label="Sizing example input" aria-describedby="button-addon1">
                 </div>
             </div>
-           
+
 
             <div class="d-flex flex-row justify-content-center my-4">
                 <div class="input-group mb-3 w-25 px-3 ">
@@ -1767,7 +1902,7 @@
                         aria-label="Sizing example input" aria-describedby="button-addon1">
                 </div>
             </div>
-          
+
 
             <div class="d-flex flex-row justify-content-center my-4">
                 <div class="input-group mb-3 w-25 px-3 ">
@@ -1798,6 +1933,36 @@
             <button type="button" class="btn btn-danger" style="border: 2px solid black;"
                 onclick="optional()">Exit</button>
         </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <table class="table" id="table1">
+
+            </table>
+        </div>
+        <div>
+            <table class="table" id="table2">
+
+            </table>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div>
+            <table class="table" id="table3">
+
+            </table>
+        </div>
+        <div>
+            <table class="table" id="table4">
+
+            </table>
+        </div>
+
+
     </div>
 
 
