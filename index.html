@@ -937,11 +937,11 @@
         function summary1() {
             if (sum > 100) {
                 alert("Maximum Credit is 100 please recreate your team")
-            } else if (listArr.length !== 11) {
+            } 
+             if (listArr.length !== 11) {
                 alert("Team size must be 11");
-            }else if(sum <= 100 && listArr.length == 11) {   
-                // document.getElementById('btn1').disabled = false;
             }
+           
             newArr = [...newArr1, ...newArr2, ...newArr3];
             sum = 0;
 
@@ -970,7 +970,7 @@
             let button1 = "";
             button1 = `  <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Team1()">Team1</button>
             <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Team2()">Team2</button><br><br>
-            <button class="btn btn-primary" id="btn1" style="border: 2px solid black;" disabled="true" onclick="play()" type="button">Let's Play</button>
+            <button class="btn btn-primary" id="btn1" style="border: 2px solid black;"  onclick="play()" type="button">Let's Play</button>
             <button class="btn btn-primary" id="btn2" style="border: 2px solid black; display: none;" onclick="play1()" type="button">Let's Play Team2</button>
             `;
             document.getElementById("button1").innerHTML = button1;
