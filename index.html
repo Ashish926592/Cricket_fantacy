@@ -1284,7 +1284,7 @@
             return shot3;
         }
 
-        let over = 5;
+        let over = 3;
         let ball = 6;
         let myOver = [];
         let currentBall = 0;
@@ -1443,7 +1443,7 @@
             }
         }
 
-        let over1 = 5;
+        let over1 = 3;
         let ball1 = 6;
         let myOver1 = [];
         let currentBall1 = 0;
@@ -1640,9 +1640,8 @@
         }
 
         function Team1Scored() {
-            document.getElementById("bt1").style.display = "block";
-            document.getElementById("bt2").style.display = "none";
-            if (arrScore1.length == 0 || arrScore2 == 0) {
+          
+            if (arrScore1.length == 0 || arrScore2.length == 0) {
                 alert("please play first game then show the score");
             } else {
                 let table = ` <thead>
@@ -1690,13 +1689,16 @@
                 document.getElementById("table2").innerHTML = table2;
 
             }
+            document.getElementById("table1").style.display = "block";
+            document.getElementById("table2").style.display = "block";
+            document.getElementById("table3").style.display = "none";
+            document.getElementById("table4").style.display = "none";
 
         }
 
         function Team2Scored() {
-            document.getElementById("bt2").style.display = "block";
-            document.getElementById("bt1").style.display = "none";
-            if (arrScore3 == 0 || arrScore4 == 0) {
+          
+            if (arrScore3.length == 0 || arrScore4.length == 0) {
                 alert("please play first game then show the score");
             } else {
 
@@ -1744,6 +1746,11 @@
                 table2 = table2 + tr1 + "</tbody>";
                 document.getElementById("table4").innerHTML = table2;
             }
+
+            document.getElementById("table3").style.display = "block";
+            document.getElementById("table4").style.display = "block";
+            document.getElementById("table1").style.display = "none";
+            document.getElementById("table2").style.display = "none";
 
 
         }
@@ -2041,12 +2048,12 @@
 
     <div class="row">
         <div>
-            <table class="table" id="table1">
+            <table class="table" id="table1" style="display: none;">
 
             </table>
         </div>
         <div>
-            <table class="table" id="table2">
+            <table class="table" id="table2"  style="display: none;">
 
             </table>
         </div>
@@ -2056,12 +2063,12 @@
 
     <div class="row">
         <div>
-            <table class="table" id="table3">
+            <table class="table" id="table3"  style="display: none;">
 
             </table>
         </div>
         <div>
-            <table class="table" id="table4">
+            <table class="table" id="table4"  style="display: none;">
 
             </table>
         </div>
