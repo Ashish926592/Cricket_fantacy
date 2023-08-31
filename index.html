@@ -616,8 +616,8 @@
         }
         function summary() {
             listArr = [...listArr1, ...listArr2, ...listArr3];
-            if (sum <= 100 && listArr.length == 11) {
-                document.getElementById('secondteam').disabled = false;
+            if(listArr.length == 0){
+                alert("please choose playername");
             }
             else if (sum > 100) {
                 alert("Maximum Credit is 100 please recreate your team");
@@ -663,7 +663,9 @@
 
 
         function secondTeam() {
-            if (captainName1 == null || vCaptainName1 == null) {
+            if(listArr.length == 0){
+                alert("please choose Team1");
+            }else if (captainName1 == "" || vCaptainName1 == "") {
                 alert("Please select captain name and vice captain name")
             } else {
                 document.getElementById('team1').style.display = "none";
@@ -1029,8 +1031,7 @@
 
                 document.getElementById("teamList").innerHTML = list;
                 document.getElementById("teamList").style.display = "block";
-                // document.getElementById('team1').style.display = "none";
-                // document.getElementById('team2').style.display = "none";
+         
             }
 
 
@@ -1074,15 +1075,14 @@
 
                 document.getElementById("teamList").innerHTML = list;
                 document.getElementById("teamList").style.display = "block";
-                // document.getElementById('team1').style.display = "none";
-                // document.getElementById('team2').style.display = "none";
+             
             }
 
         }
 
 
         function play() {
-            if (captainName2 == null || vCaptainName2 == null) {
+            if (captainName2 == "" || vCaptainName2 == "") {
                 alert("Please select captain name and vice captain name")
             }else if (listArr.length !== 11 || newArr.length !== 11) {
                 alert("Please select first team!");
@@ -1198,8 +1198,7 @@
                     point1 = -2;
                     point2 = 10;
                     wicketCount1 += 1;
-
-                    break
+                    break;
             }
 
 
@@ -1632,9 +1631,10 @@
         }
 
         function TeamScored() {
+           
             let button2 = "";
-            button2 = `  <button type="button" class="btn btn-primary"  id="bt1"style="border: 2px solid black;display: none;" onclick="Team1Scored()">Team1Scored</button>
-            <button type="button" class="btn btn-primary" id="bt2" style="border: 2px solid black;display: none;" onclick="Team2Scored()">Team2Scored</button><br><br>
+            button2 = `  <button type="button" class="btn btn-primary"  id="bt1"style="border: 2px solid black;" onclick="Team1Scored()">Team1Scored</button>
+            <button type="button" class="btn btn-primary" id="bt2" style="border: 2px solid black;" onclick="Team2Scored()">Team2Scored</button><br><br>
             `;
             document.getElementById("button2").innerHTML = button2;
         }
@@ -1793,7 +1793,7 @@
             <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="summary()">
                 summary <span class="badge bg-secondary" id="credittotal"></span>
             </button>
-            <button class="btn btn-primary" id="secondteam" style="border: 2px solid black;" disabled="true"
+            <button class="btn btn-primary" id="secondteam" style="border: 2px solid black;"
                 onclick="secondTeam()">Create
                 Second Team </button>
 
