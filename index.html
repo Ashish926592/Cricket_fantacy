@@ -11,7 +11,7 @@
         crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-        .container {
+        .container3 {
             width: auto;
             font-family: Arial, sans-serif;
             margin: 20px auto;
@@ -566,57 +566,10 @@
             }
         }
 
-        function makeCaptain() {
-            document.getElementById('chooseC').style.display = "block"
-            let option = `<option value="" selected>ChooseCaptain</option>`;
-            listArr = [...listArr1, ...listArr2, ...listArr3];
-            for (let i of listArr) {
-                option += ` 
-              <option value="${i.name}">${i.name}</option>
-              `
-            }
-            document.getElementById("captain1").innerHTML = `${option}`
 
-        }
-        function makeVCaptain() {
-            document.getElementById('chooseVC').style.display = "block"
-            let option = `<option value="" selected>ChooseVCaptain</option>`;
-            listArr = [...listArr1, ...listArr2, ...listArr3];
-            for (let i of listArr) {
-                option += ` 
-              <option value="${i.name}">${i.name}</option>
-              `
-            }
-            document.getElementById("vCaptain1").innerHTML = `${option}`
-        }
-        var captainName1;
-        var vCaptainName1;
-        var chooseCaptain1 = (value) => {
-            if (value == vCaptainName1) {
-                alert(`You can't select same player as Captain and Vice-Captain`)
-                return false
-            }else if(captainName1 == "") {
-                alert("please select captain name")
-            } 
-             else {
-                captainName1 = value
-                // console.log(captainName1)
-            }
-        }
-        var chooseVCaptain1 = (value) => {
-            if (value == captainName1) {
-                alert(`You can't select same player as Captain and Vice-Captain`)
-                return false
-            }else if(vCaptainName1 == "") {
-                alert("please select vicecaptain name")
-            }  else {
-                vCaptainName1 = value
-                // console.log(vCaptainName1)
-            }
-        }
         function summary() {
             listArr = [...listArr1, ...listArr2, ...listArr3];
-            if(listArr.length == 0){
+            if (listArr.length == 0) {
                 alert("please choose playername");
             }
             else if (sum > 100) {
@@ -660,19 +613,79 @@
             }
             document.getElementById("credittotal").innerHTML = sum;
         }
+        var captainName1;
+        var vCaptainName1;
+        function makeCaptain() {
+            document.getElementById('chooseC').style.display = "block"
+            let option = `<option value="">ChooseCaptain</option>`;
+            listArr = [...listArr1, ...listArr2, ...listArr3];
+            for (let i of listArr) {
+                option += ` 
+              <option value="${i.name}">${i.name}</option>
+              `
+            }
+            document.getElementById("captain1").innerHTML = `${option}`
+
+        }
+        function makeVCaptain() {
+            document.getElementById('chooseVC').style.display = "block"
+            let option = `<option value="">ChooseVCaptain</option>`;
+            listArr = [...listArr1, ...listArr2, ...listArr3];
+            for (let i of listArr) {
+                option += ` 
+              <option value="${i.name}">${i.name}</option>
+              `
+            }
+            document.getElementById("vCaptain1").innerHTML = `${option}`
+        }
+
+        var chooseCaptain1 = (value) => {
+            if (value == vCaptainName1) {
+                alert(`You can't select same player as Captain and Vice-Captain`)
+                return false
+            }
+            else {
+                captainName1 = value
+                console.log(captainName1)
+            }
+        }
+        var chooseVCaptain1 = (value) => {
+            if (value == captainName1) {
+                alert(`You can't select same player as Captain and Vice-Captain`)
+                return false
+            } else {
+                vCaptainName1 = value
+                console.log(vCaptainName1)
+            }
+        }
 
 
         function secondTeam() {
-            if(listArr.length == 0){
+
+            if (listArr.length == 0) {
                 alert("please choose Team1");
-            }else if (captainName1 == "" || vCaptainName1 == "") {
-                alert("Please select captain name and vice captain name")
-            } else {
-                document.getElementById('team1').style.display = "none";
-                document.getElementById("tosswin").disabled = true;
-                document.getElementById('team2').style.display = "block";
-                document.getElementById("teamName2").innerHTML = `${players[1]} Create your team<br><br>`
+                return false;
             }
+            if (sum > 100) {
+                alert("Maximum Credit is 100. Please recreate your team");
+                return false;
+            }
+            if (listArr.length !== 11) {
+                alert("11 Players must be selected ");
+                return false;
+            }
+            if (captainName1 == "" || vCaptainName1 == "" || captainName1 == null || vCaptainName1 == null) {
+                alert("Please select captain name and vice captain name");
+                return false;
+            }
+            document.getElementById('team1').style.display = "none";
+            document.getElementById("tosswin").disabled = true;
+            document.getElementById('team2').style.display = "block";
+            document.getElementById("teamName2").innerHTML = `${players[1]} Create your team<br><br>`
+
+
+            console.log(captainName1);
+            console.log(vCaptainName1);
 
         }
 
@@ -901,7 +914,7 @@
         function makeVCaptain1() {
             document.getElementById('chooseVC2').style.display = "block";
             let option = `<option value="" selected>ChooseVCaptain</option>`;
-            
+
             newArr = [...newArr1, ...newArr2, ...newArr3];
             for (let i of newArr) {
                 option += ` 
@@ -916,7 +929,7 @@
             if (value == vCaptainName2) {
                 alert(`You can't select same player as Captain and Vice-Captain`)
                 return false
-            }else if(captainName2 == "") {
+            } else if (captainName2 == "") {
                 alert("please select captain name")
             } else {
                 captainName2 = value;
@@ -927,9 +940,9 @@
             if (value == captainName2) {
                 alert(`You can't select same player as Captain and Vice-Captain`)
                 return false
-            }else if(vCaptainName2 == "") {
+            } else if (vCaptainName2 == "") {
                 alert("please select vicecaptain name")
-            }  else {
+            } else {
                 vCaptainName2 = value
                 // console.log(vCaptainName2)
             }
@@ -948,10 +961,12 @@
         }
         function summary1() {
             if (sum > 100) {
-                alert("Maximum Credit is 100 please recreate your team")
+                alert("Maximum Credit is 100 please recreate your team");
+                return false;
             }
             if (listArr.length !== 11) {
                 alert("Team size must be 11");
+                return false;
             }
 
             newArr = [...newArr1, ...newArr2, ...newArr3];
@@ -1031,7 +1046,7 @@
 
                 document.getElementById("teamList").innerHTML = list;
                 document.getElementById("teamList").style.display = "block";
-         
+
             }
 
 
@@ -1075,20 +1090,21 @@
 
                 document.getElementById("teamList").innerHTML = list;
                 document.getElementById("teamList").style.display = "block";
-             
+
             }
 
         }
 
 
         function play() {
-            if (captainName2 == "" || vCaptainName2 == "") {
+            if (captainName2 == "" || vCaptainName2 == "" || captainName2 == null || vCaptainName2 == null) {
                 alert("Please select captain name and vice captain name")
-            }else if (listArr.length !== 11 || newArr.length !== 11) {
+            } else if (listArr.length !== 11 || newArr.length !== 11) {
                 alert("Please select first team!");
             }
-             else {
+            else {
                 document.getElementById("teamList").style.display = "none";
+                document.getElementById("btn1").style.display = "none";
 
                 document.getElementById("start").style.display = "block";
                 document.getElementById("end").style.display = "none";
@@ -1104,6 +1120,7 @@
                 alert("Please select first team!");
             } else {
                 document.getElementById("teamList").style.display = "none";
+                document.getElementById("btn2").style.display = "none";
                 document.getElementById("start").style.display = "none";
                 document.getElementById("end").style.display = "block";
                 document.getElementById('team1').style.display = "none";
@@ -1284,7 +1301,7 @@
             return shot3;
         }
 
-        let over = 3;
+        let over = 5;
         let ball = 6;
         let myOver = [];
         let currentBall = 0;
@@ -1332,7 +1349,7 @@
                     total_point1 = total_point1 + point1 * 2;
                     ballCount1++;
                     document.getElementById("scorecard1").value = total1;
-                   
+
 
                 } else if (listArr[bowlerWicket].name == vCaptainName1) {
                     total1 = total1 + point1 * 1.5;
@@ -1354,7 +1371,7 @@
                     ballCount1++;
                     document.getElementById("scorecard2").value = total2;
                 } else if (newArr2[count].name == vCaptainName2) {
-                   
+
                     total2 = total2 + point2 * 1.5;
                     total_point2 = total_point2 + point2 * 1.5;
                     ballCount1++;
@@ -1383,12 +1400,12 @@
 
 
                 let obj3 = {
-                        name: newArr2[count].name,
-                        point: total_point2,
-                        wicket: Wicket1
-                    }
+                    name: newArr2[count].name,
+                    point: total_point2,
+                    wicket: Wicket1
+                }
 
-                    let index1 = arrScore2.findIndex(obj => obj.name === obj3.name);
+                let index1 = arrScore2.findIndex(obj => obj.name === obj3.name);
                 if (index1 !== -1) {
                     arrScore2[index1] = obj3;
                 } else {
@@ -1421,7 +1438,7 @@
                 }
                 currentBall++;
                 if (currentBall === ball) {
-                   
+
                     currentBall = 0;
                     total_point2 = 0;
                     Wicket1 = 0;
@@ -1443,7 +1460,7 @@
             }
         }
 
-        let over1 = 3;
+        let over1 = 5;
         let ball1 = 6;
         let myOver1 = [];
         let currentBall1 = 0;
@@ -1491,9 +1508,9 @@
                     total2 = total2 + point3 * 1.5;
                     total_run2 = total_run2 + run2;
                     total_point3 = total_point3 + point3 * 1.5;
-                    
+
                     ballCount2++;
-                   
+
                     document.getElementById("tscorecard2").value = total2;
 
                 } else {
@@ -1501,29 +1518,29 @@
                     total_run2 = total_run2 + run2;
                     total_point3 = total_point3 + point3;
                     ballCount2++;
-                  
+
                     document.getElementById("tscorecard2").value = total2;
                 }
 
-                if (listArr2[count1].name== captainName1) {
+                if (listArr2[count1].name == captainName1) {
                     total1 = total1 + point4 * 2;
                     total_point4 = total_point4 + point4 * 4;
                     ballCount2++;
                     document.getElementById("tscorecard1").value = total1;
-                    
-                } else if (listArr2[count1].name== vCaptainName1) {
-                  
+
+                } else if (listArr2[count1].name == vCaptainName1) {
+
                     total1 = total1 + point4 * 1.5;
                     total_point4 = total_point4 + point4 * 1.5;
                     ballCount2++;
                     document.getElementById("tscorecard1").value = total1;
-                  
+
                 } else {
                     total1 = total1 + point4;
                     total_point4 = total_point4 + point4;
                     ballCount2++;
                     document.getElementById("tscorecard1").value = total1;
-                  
+
                 }
                 let obj4 = {
                     name: newArr[bowlerWicket1].name,
@@ -1542,11 +1559,11 @@
                 }
 
                 let obj5 = {
-                        name: listArr2[count1].name,
-                        point: total_point4,
-                        wicket: Wicket2
-                    }
-                  let index1 = arrScore4.findIndex(obj => obj.name === obj5.name);
+                    name: listArr2[count1].name,
+                    point: total_point4,
+                    wicket: Wicket2
+                }
+                let index1 = arrScore4.findIndex(obj => obj.name === obj5.name);
                 if (index1 !== -1) {
                     arrScore4[index1] = obj5;
                 } else {
@@ -1571,12 +1588,12 @@
                     ballCount2 = 0;
 
                     p += `<span class="score">${shot2} </span>`;
-                    p3 += ` <p class="card-text text-danger text-center">Over-[${currentOver1}.${currentBall1 + 1}] :  ${ myOver1[currentOver1][currentBall1]} , ${new Date().toLocaleString()} `; 
+                    p3 += ` <p class="card-text text-danger text-center">Over-[${currentOver1}.${currentBall1 + 1}] :  ${myOver1[currentOver1][currentBall1]} , ${new Date().toLocaleString()} `;
                     document.getElementById("batter1").value = newArr[bowlerWicket1].name;
                 }
                 currentBall1++;
                 if (currentBall1 === ball1) {
-                  
+
                     currentBall1 = 0;
                     total_point4 = 0;
                     currentOver1++;
@@ -1597,18 +1614,18 @@
                 return false;
             }
         }
-        function result(){
+        function result() {
             document.getElementById("hello").style.display = "block";
             if (total1 > total2) {
-                    let win = `Congratulations!!!!! ${player1} Win`
-                    document.getElementById("middle").innerHTML = win;
-                } else if (total1 < total2) {
-                    let win = `Conngratulations ${player2} Win`
-                    document.getElementById("middle").innerHTML = win;
-                } else {
-                    let win = `Not win any team scores are same of both teams`
-                    document.getElementById("middle").innerHTML = win;
-                }
+                let win = `Congratulations!!!!! ${player1} Win`
+                document.getElementById("middle").innerHTML = win;
+            } else if (total1 < total2) {
+                let win = `Conngratulations ${player2} Win`
+                document.getElementById("middle").innerHTML = win;
+            } else {
+                let win = `Not win any team scores are same of both teams`
+                document.getElementById("middle").innerHTML = win;
+            }
         }
         function disableButton() {
             const button = document.getElementById("hitted");
@@ -1631,7 +1648,7 @@
         }
 
         function TeamScored() {
-           
+
             let button2 = "";
             button2 = `  <button type="button" class="btn btn-primary"  id="bt1"style="border: 2px solid black;" onclick="Team1Scored()">Team1Scored</button>
             <button type="button" class="btn btn-primary" id="bt2" style="border: 2px solid black;" onclick="Team2Scored()">Team2Scored</button><br><br>
@@ -1640,7 +1657,7 @@
         }
 
         function Team1Scored() {
-          
+
             if (arrScore1.length == 0 || arrScore2.length == 0) {
                 alert("please play first game then show the score");
             } else {
@@ -1697,7 +1714,7 @@
         }
 
         function Team2Scored() {
-          
+
             if (arrScore3.length == 0 || arrScore4.length == 0) {
                 alert("please play first game then show the score");
             } else {
@@ -1814,7 +1831,7 @@
             <div id="chooseC" style="display: none;">Choose Captain:-<div class="col-auto w-50">
                     <label class="visually-hidden" for="captain1">Preference</label>
                     <select class="form-select" id="captain1" onchange="chooseCaptain1(this.value)">
-                       
+
 
 
                     </select>
@@ -1955,13 +1972,13 @@
 
         </div>
 
-        <div class="container">
+        <div class="container3">
             <div class="over" id="over">
 
             </div>
         </div>
 
-        <div class="container" id="team_over1">
+        <div class="container3" id="team_over1">
 
         </div>
 
@@ -2014,25 +2031,26 @@
 
         </div>
 
-        <div class="container">
+        <div class="container3">
             <div class="over" id="over1">
 
             </div>
         </div>
 
-        <div class="container" id="team_over2">
+        <div class="container3" id="team_over2">
 
         </div>
 
-       
+
 
     </div>
-<div class="d-flex flex-row justify-content-center my-4">
-    <div id="result1" style="display: none;">
-        <button type="button" class="btn btn-success" style="border: 2px solid black;" onclick="result()">Result</button>
+    <div class="d-flex flex-row justify-content-center my-4">
+        <div id="result1" style="display: none;">
+            <button type="button" class="btn btn-success" style="border: 2px solid black;"
+                onclick="result()">Result</button>
+        </div>
     </div>
-</div>
-   
+
 
 
     <div class="container1" style="display: none;" id="hello">
@@ -2046,41 +2064,34 @@
         </div>
     </div>
 
-    <div class="row">
-        <div>
-            <table class="table" id="table1" style="display: none;">
 
-            </table>
+    <div class="container">
+        <div class="row w-100">
+            <div>
+                <table class="table w-100" id="table1">
+
+                </table>
+            </div>
+            <div>
+                <table class="table w-100" id="table2">
+
+                </table>
+            </div>
         </div>
-        <div>
-            <table class="table" id="table2"  style="display: none;">
 
-            </table>
+        <div class="row w-100">
+            <div>
+                <table class="table w-100" id="table3">
+
+                </table>
+            </div>
+            <div>
+                <table class="table w-100" id="table4">
+
+                </table>
+            </div>
         </div>
-
-
     </div>
-
-    <div class="row">
-        <div>
-            <table class="table" id="table3"  style="display: none;">
-
-            </table>
-        </div>
-        <div>
-            <table class="table" id="table4"  style="display: none;">
-
-            </table>
-        </div>
-
-
-    </div>
-
-
-
-
-
-
 
 </body>
 
