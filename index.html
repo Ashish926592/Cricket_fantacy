@@ -11,6 +11,13 @@
         crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
+        body{
+            background-image:url(
+"https://img.freepik.com/free-vector/green-cricket-sports-background-with-illustration-players-golden-trophy-cup_1302-5494.jpg?w=740&t=st=1693575452~exp=1693576052~hmac=f9441b64e0984055ea4b28e4f24f83d7c495aa3aed9885cd16f4ba5085f179a3");
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            background-size: 100% 100%;
+        }
         .container3 {
             width: auto;
             font-family: Arial, sans-serif;
@@ -45,7 +52,6 @@
         }
 
         .container1 {
-            background-color: #222;
             color: #fff;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -928,6 +934,7 @@
               `
             }
             document.getElementById("vCaptain2").innerHTML = `${option}`
+            document.getElementById("teamPre").style.display = "block";
         }
         var captainName2;
         var vCaptainName2;
@@ -953,6 +960,8 @@
                 // console.log(vCaptainName2)
             }
         }
+
+
         function creditData1() {
             var teamList = [...newArr1, ...newArr2, ...newArr3]
             sum = 0;
@@ -995,9 +1004,62 @@
             creditData1();
             makeCaptain1();
             makeVCaptain1();
-            document.getElementById("btn1").style.display = "block";
 
         }
+
+        var teamPreview = () => {
+            if (sum > 100) {
+                alert("Maximum Credit is 100. Please recreate your team");
+                return false;
+            }
+            if (listArr.length !== 11) {
+                alert("Team size must be 11");
+                return false;
+            }
+
+            if (captainName2 == "" || vCaptainName2 == "" || captainName2 == null || vCaptainName2 == null) {
+                alert(`Please Select Captain & Vice-Captain First`);
+                return false;
+            }
+            document.getElementById("team2").style.display = "none";
+            document.getElementById("teamSummary").style.display = "block";
+            document.getElementById(
+                "gamingTeam1"
+            ).innerHTML = `${gamingTeam[0].toUpperCase()} Playing XI`;
+            document.getElementById(
+                "gamingTeam2"
+            ).innerHTML = `${gamingTeam[1].toUpperCase()} Playing XI`;
+            let list1 = "";
+            let list2 = "";
+
+            for (let i of players[0]) {
+                for (let j of i) {
+                    // console.log(j.name)
+                    if (j.name == captainName1) {
+                        list1 += `  <li class="list-group-item list-group-item-primary">${j.name}-(C)</li>`;
+                    } else if (j.name == vCaptainName1) {
+                        list1 += `  <li class="list-group-item  list-group-item-secondary">${j.name}-(VC)</li>`;
+                    } else {
+                        list1 += `  <li class="list-group-item list-group-item-light">${j.name}</li>`;
+                    }
+                }
+            }
+            for (let i of players[1]) {
+                for (let j of i) {
+                    // console.log(j.name)
+                    if (j.name == captainName2) {
+                        list2 += `  <li class="list-group-item list-group-item-primary">${j.name}-(C)</li>`;
+                    } else if (j.name == vCaptainName2) {
+                        list2 += `  <li class="list-group-item  list-group-item-secondary">${j.name}-(VC)</li>`;
+                    } else {
+                        list2 += `  <li class="list-group-item list-group-item-light">${j.name}</li>`;
+                    }
+                }
+            }
+
+            document.getElementById("playingTeam1").innerHTML = list1;
+            document.getElementById("playingTeam2").innerHTML = list2;
+        };
 
 
 
@@ -1112,8 +1174,8 @@
                 alert("Please select first team!");
             }
             else {
+                document.getElementById("teamSummary").style.display = "none";
                 document.getElementById("teamList").style.display = "none";
-                document.getElementById("btn1").style.display = "none";
                 document.getElementById("start").style.display = "block";
                 document.getElementById("displayTeam").style.display = "block";
                 document.getElementById("hideTeams1").style.display = "none";
@@ -1131,7 +1193,6 @@
                 alert("Please select first team!");
             } else {
                 document.getElementById("teamList").style.display = "none";
-                document.getElementById("btn2").style.display = "none";
                 document.getElementById("start").style.display = "none";
                 document.getElementById("end").style.display = "block";
                 document.getElementById('team1').style.display = "none";
@@ -1466,8 +1527,7 @@
                 document.getElementById("hitted").disabled = true;
                 alert("1st inning is finished");
                 alert("2nd team let's play");
-                document.getElementById("btn1").style.display = "none";
-                document.getElementById("btn2").style.display = "block";
+                document.getElementById("playSecondTeam").style.display = "block";
                 return false;
             }
         }
@@ -1804,9 +1864,14 @@
     </script>
 </head>
 
-<body style="background-color: rgb(155, 158, 162);">
+<body>
     <div id="moto">
-        <div class="mt-5" style="display: flex">
+        <div class="d-flex justify-content-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Dream11_logo.svg" alt="" style="height: 200px; width: 300px;">
+
+        </div>
+        <div class="mt-3 justify-content-center" style="display: flex">
+           
             <div>
                 <button type="button" class="btn btn-success" id="tosswin" style="border: 2px solid black;"
                     onclick="tossWin()">Toss</button>
@@ -1822,22 +1887,28 @@
 
 
         <div class="mt-5" id="team1" style="display: none;">
-            <span id="teamName1"></span>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="bat()">
-                Batsmen <span class="badge bg-secondary" id="batTotal"></span>
-            </button>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="bowl()">
-                Bowler <span class="badge bg-secondary" id="bowlTotal"></span>
-            </button>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Wicketkeeper()">
-                Wicketkeeper <span class="badge bg-secondary" id="keepingTotal"></span>
-            </button>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="summary()">
-                summary <span class="badge bg-secondary" id="credittotal"></span>
-            </button>
-            <button class="btn btn-primary" id="secondteam" style="border: 2px solid black;"
-                onclick="secondTeam()">Create
-                Second Team </button>
+            <div class="d-flex justify-content-center">
+                <div id="teamName1" style="font-size:  2.0em; background-color: #56ae33; width: 400px;border-radius: 20px;padding-top: 30px;"class="text-center text-black d-flex justify-content-center"></div>
+            </div>
+          
+            <div class="d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="bat()">
+                    Batsmen <span class="badge bg-secondary" id="batTotal"></span>
+                </button>
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="bowl()">
+                    Bowler <span class="badge bg-secondary" id="bowlTotal"></span>
+                </button>
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="Wicketkeeper()">
+                    Wicketkeeper <span class="badge bg-secondary" id="keepingTotal"></span>
+                </button>
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="summary()">
+                    summary <span class="badge bg-secondary" id="credittotal"></span>
+                </button>
+                <button class="btn btn-primary mx-3" id="secondteam" style="border: 2px solid black;"
+                    onclick="secondTeam()">Create
+                    Second Team </button>
+            </div>
+           
 
             <div id="list" class="d-flex flex-row row justify-content-center" style="display: block;">
                 <div class="col-lg-3" id="list" style="display: block;">
@@ -1846,41 +1917,46 @@
 
             </div>
 
-            <div id="chooseC" style="display: none;">Choose Captain:-<div class="col-auto w-50">
+            <div class="d-flex  justify-content-center">
+                <div id="chooseC" class="my-4  mx-4 text-white" style="display: none;">Choose Captain:-<div class="col-auto">
                     <label class="visually-hidden" for="captain1">Preference</label>
                     <select class="form-select" id="captain1" onchange="chooseCaptain1(this.value)">
-
-
-
                     </select>
                 </div>
             </div>
-            <div id="chooseVC" style="display: none;">Choose Vice Captain:-<div class="col-auto w-50">
+            <div id="chooseVC" class="my-4  mx-4 text-white" style="display: none;">Choose Vice Captain:-<div class="col-auto">
                     <label class="visually-hidden" for="captain1">Preference</label>
                     <select class="form-select" id="vCaptain1" onchange="chooseVCaptain1(this.value)">
                         <option selected>VCaptain</option>
-
-
                     </select>
                 </div>
             </div>
+
+            </div>
+
+  
         </div>
 
         <div class="mt-5" id="team2" style="display: none;">
-            <span id="teamName2"></span>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="bat1()">
-                Batsmen <span class="badge bg-secondary" id="batTotal1"></span>
-            </button>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="bowl1()">
-                Bowler <span class="badge bg-secondary" id="bowlTotal1"></span>
-            </button>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="Wicketkeeper1()">
-                Wicketkeeper <span class="badge bg-secondary" id="keepingTotal1"></span>
-            </button>
-            <button type="button" class="btn btn-primary" style="border: 2px solid black;" onclick="summary1()">
-                summary <span class="badge bg-secondary" id="credittotal1"></span>
-            </button>
-
+            <div class="d-flex justify-content-center">
+                <div id="teamName2" style="font-size:  2.0em; background-color: #56ae33; width: 400px;border-radius: 20px;padding-top: 30px;"class="text-center text-black d-flex justify-content-center"></div>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="bat1()">
+                    Batsmen <span class="badge bg-secondary" id="batTotal1"></span>
+                </button>
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="bowl1()">
+                    Bowler <span class="badge bg-secondary" id="bowlTotal1"></span>
+                </button>
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="Wicketkeeper1()">
+                    Wicketkeeper <span class="badge bg-secondary" id="keepingTotal1"></span>
+                </button>
+                <button type="button" class="btn btn-primary mx-3" style="border: 2px solid black;" onclick="summary1()">
+                    summary <span class="badge bg-secondary" id="credittotal1"></span>
+                </button>
+    
+            </div>
+           
             <div id="list1" class="d-flex flex-row row justify-content-center" style="display: block;">
                 <div class="col-lg-3" id="list1" style="display: block;">
 
@@ -1888,27 +1964,56 @@
 
             </div>
 
-            <div id="chooseC2" style="display: none;">Choose Captain:-<div class="col-auto w-50">
+            <div class="d-flex  justify-content-center">
+                <div id="chooseC2"  class="my-4  mx-4 text-white" style="display: none;">Choose Captain:-<div class="col-auto">
                     <label class="visually-hidden" for="captain2">Preference</label>
                     <select class="form-select" id="captain2" onchange="chooseCaptain2(this.value)">
 
                     </select>
                 </div>
             </div>
-            <div id="chooseVC2" style="display: none;">Choose Vice Captain:-<div class="col-auto w-50">
+            <div id="chooseVC2"  class="my-4  mx-4 text-white" style="display: none;">Choose Vice Captain:-<div class="col-auto">
                     <label class="visually-hidden" for="captain2">Preference</label>
                     <select class="form-select" id="vCaptain2" onchange="chooseVCaptain2(this.value)">
 
                     </select>
                 </div>
             </div>
+            </div>
+
+     
+            <div class="d-grid gap-2 col-6 mx-auto my-4">
+                <button class="btn btn-primary" id="teamPre" style="display: none; border: 2px solid black;" onclick="teamPreview()"
+                    type="button">Team Preview</button>
+            </div>
         </div>
 
 
+    </div>
 
+    <div id="teamSummary" style="display: none;">
+        <h2 class="text-center text-white">Team Summary</h2>
+        <div id="teams" class="d-flex flex-row justify-content-evenly">
+            <div>
+                <h3 id="gamingTeam1" class="text-white"></h3>
+                <p>
+                <ol class="list-group list-group-numbered" id="playingTeam1">
 
+                </ol>
+                </p>
+            </div>
+            <div>
+                <h3 class="text-white" id="gamingTeam2"></h3>
+                <p>
+                <ol class="list-group list-group-numbered" id="playingTeam2">
 
-
+                </ol>
+                </p>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-6 mx-auto my-4">
+            <button class="btn btn-primary" style="border: 2px solid black;"   onclick="play()" type="button">Let's Play</button>
+        </div>
     </div>
 
 
@@ -1924,11 +2029,6 @@
             <button class="btn btn-primary  mx-4 mt-3" style="border: 2px solid black;" id="hideTeams2"
                 onclick="hideTeam2()">Hide Team 2</button>
         </div>
-        <!-- <div class="d-flex justify-content-center">
-            <div id="button1" style="margin-top: 10px;">
-
-            </div>
-        </div> -->
 
         <div class="d-flex flex-row row justify-content-center">
             <div class="col-lg-3" id="teamList" style="display: none;">
@@ -1937,12 +2037,7 @@
         </div>
     </div>
 
-    <div class="d-flex flex-row row justify-content-center">
-        <button class="btn btn-primary" id="btn1" style="border: 2px solid black;display: none;" onclick="play()"
-            type="button">Let's Play</button>
-        <button class="btn btn-primary" id="btn2" style="border: 2px solid black; display: none;" onclick="play1()"
-            type="button">Let's Play Team2</button>
-    </div>
+
 
     <div id="start" style="display: none;">
         <div class="d-flex flex-row justify-content-evenly my-4">
@@ -1991,6 +2086,12 @@
 
         </div>
 
+
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-primary my-4" onclick="play1()" id="playSecondTeam" style="display: none;border: 2px solid black;"
+                type="button">Click To Play 2nd Team</button>
+        </div>
+
         <div class="container3">
             <div class="over" id="over">
 
@@ -2000,6 +2101,8 @@
         <div class="container3" id="team_over1">
 
         </div>
+
+      
 
 
     </div>
@@ -2063,29 +2166,29 @@
 
 
     </div>
-   
+
 
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary my-2" onclick="Team1Scored()" id="inning1" style="display: none;"
+        <button class="btn btn-primary my-2" onclick="Team1Scored()" id="inning1" style="display: none; border: 2px solid black;"
             type="button">Show 1st Inning </button>
     </div>
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary my-2" onclick="hideSummary1()" id="hideInning1" style="display: none;"
+        <button class="btn btn-primary my-2" onclick="hideSummary1()" id="hideInning1" style="display: none;border: 2px solid black;"
             type="button">Hide 1st Inning </button>
     </div>
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary my-2" onclick="Team2Scored()" id="inning2" style="display: none;"
+        <button class="btn btn-primary my-2" onclick="Team2Scored()" id="inning2" style="display: none;border: 2px solid black;"
             type="button">Show 2nd Inning </button>
     </div>
     <div class="d-grid gap-2 col-6 mx-auto">
-        <button class="btn btn-primary my-2" onclick="hideSummary2()" id="hideInning2" style="display: none;"
+        <button class="btn btn-primary my-2" onclick="hideSummary2()" id="hideInning2" style="display: none;border: 2px solid black;"
             type="button">Hide 2nd Inning</button>
     </div>
 
     <div class="container">
         <div class="row" id="hideTable1">
             <div>
-                <table class="table mt-2"  id="table1">
+                <table class="table mt-2" id="table1">
 
                 </table>
             </div>
@@ -2114,17 +2217,15 @@
 
         </div>
 
-
-        <div class="d-flex flex-row justify-content-center my-4">
-            <div id="result1" style="display: none;">
-                <button type="button" class="btn btn-success" style="border: 2px solid black;"
-                    onclick="result()">Result</button>
-            </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="button" class="btn btn-success" style="border: 2px solid black; display: none;" id="result1"                    onclick="result()">Result</button>
+            
         </div>
-    
-    
-    
-        <div class="container1" style="display: none;" id="hello">
+      
+
+
+
+        <div class="container1 mt-2" style="display: none;" id="hello">
             <div class="game-over">
                 <h1 class="main">Game Over</h1>
                 <h3 class="middle" id="middle"></h3>
@@ -2134,7 +2235,7 @@
                     onclick="optional()">Exit</button>
             </div>
         </div>
-    
+
 
     </div>
 
