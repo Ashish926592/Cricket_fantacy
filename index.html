@@ -103,7 +103,7 @@
 
             if (player1 == null || player2 == null || player1 == '' || player2 == '') {
                 alert("Please enter team name");
-               location.reload();
+                location.reload();
             }
             if (toss == 1) {
 
@@ -1024,28 +1024,28 @@
 
                 let list = "";
                 for (let i of players[0]) {
-                    for(let j of i){
+                    for (let j of i) {
                         if (j.name == captainName1) {
-                        list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
+                            list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
             <div class="card-body">
             <h5 class="card-text"><strong>Name:-</strong>${j.name}-(C) </h5>
           </div>
         </div>`;
 
-                    } else if (j.name == vCaptainName1) {
-                        list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
+                        } else if (j.name == vCaptainName1) {
+                            list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
             <div class="card-body">
             <h5 class="card-text"><strong>Name:-</strong>${j.name}-(VC) </h5>
           </div>
         </div>`;
 
-                    } else {
-                        list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
+                        } else {
+                            list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
             <div class="card-body">
             <h5 class="card-text"><strong>Name:-</strong>${j.name} </h5>
           </div>
         </div>`;
-                    }
+                        }
 
                     }
                 }
@@ -1068,28 +1068,28 @@
 
                 let list = "";
                 for (let i of players[1]) {
-                    for(let j of i){
+                    for (let j of i) {
                         if (j.name == captainName2) {
-                        list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
+                            list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
             <div class="card-body">
             <h5 class="card-text"><strong>Name:-</strong>${j.name}-(C) </h5>
           </div>
         </div>`;
 
-                    } else if (j.name == vCaptainName2) {
-                        list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
+                        } else if (j.name == vCaptainName2) {
+                            list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
             <div class="card-body">
             <h5 class="card-text"><strong>Name:-</strong>${j.name}-(VC) </h5>
           </div>
         </div>`;
 
-                    } else {
-                        list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
+                        } else {
+                            list += `<div class="card m-3 bg-secondary text-light" style="width: 18rem;border:2px solid black;">
             <div class="card-body">
             <h5 class="card-text"><strong>Name:-</strong>${j.name} </h5>
           </div>
         </div>`;
-                    }
+                        }
 
 
                     }
@@ -1406,18 +1406,8 @@
                 }
 
 
-                let obj3 = {
-                    name: newArr2[count].name,
-                    point: total_point2,
-                    wicket: Wicket1
-                }
 
-                let index1 = arrScore2.findIndex(obj => obj.name === obj3.name);
-                if (index1 !== -1) {
-                    arrScore2[index1] = obj3;
-                } else {
-                    arrScore2.push(obj3);
-                }
+
                 if (playedShot != "Wicket") {
                     p += `<span class="score">${shot1} </span>`;
 
@@ -1436,6 +1426,17 @@
                     six_count1 = 0;
                     total_point1 = 0;
                     ballCount1 = 0;
+                    let obj3 = {
+                        name: newArr2[count].name,
+                        point: total_point2,
+                        wicket: Wicket1
+                    }
+                    let index1 = arrScore2.findIndex(obj => obj.name === obj3.name);
+                    if (index1 !== -1) {
+                        arrScore2[index1] = obj3;
+                    } else {
+                        arrScore2.push(obj3);
+                    }
 
 
                     p += `<span class="score">${shot1} </span>`;
@@ -1565,17 +1566,8 @@
                     arrScore3.push(obj4);
                 }
 
-                let obj5 = {
-                    name: listArr2[count1].name,
-                    point: total_point4,
-                    wicket: Wicket2
-                }
-                let index1 = arrScore4.findIndex(obj => obj.name === obj5.name);
-                if (index1 !== -1) {
-                    arrScore4[index1] = obj5;
-                } else {
-                    arrScore4.push(obj5);
-                }
+
+                console.log(arrScore4);
 
                 if (playedShot != "Wicket") {
                     p += `<span class="score">${shot2} </span>`;
@@ -1593,6 +1585,18 @@
                     six_count2 = 0;
                     total_point3 = 0;
                     ballCount2 = 0;
+
+                    let obj5 = {
+                        name: listArr2[count1].name,
+                        point: total_point4,
+                        wicket: Wicket2
+                    }
+                    let index1 = arrScore4.findIndex(obj => obj.name === obj5.name);
+                    if (index1 !== -1) {
+                        arrScore4[index1] = obj5;
+                    } else {
+                        arrScore4.push(obj5);
+                    }
 
                     p += `<span class="score">${shot2} </span>`;
                     p3 += ` <p class="card-text text-danger text-center">Over-[${currentOver1}.${currentBall1 + 1}] :  ${myOver1[currentOver1][currentBall1]} , ${new Date().toLocaleString()} `;
@@ -2033,7 +2037,7 @@
 
         <div class="d-flex flex-row justify-content-center my-4">
             <div class="input-group mb-3 w-25 px-3 ">
-                <button class="btn btn-primary" type="button"  id="hitted1" onclick="hit1()">Bowl</button>
+                <button class="btn btn-primary" type="button" id="hitted1" onclick="hit1()">Bowl</button>
                 <input type="text" class="form-control" placeholder="" readonly="true" id="shots1"
                     aria-label="Example text with button addon" aria-describedby="button-addon1">
             </div>
@@ -2074,27 +2078,27 @@
     </div>
 
 
-    
-
-            <table class="table w-70 border mt-2"  style="justify-content: center;"  id="table1">
-
-            </table>
 
 
-            <table class="table w-70 border mt-2 "  style="justify-content: center;" id="table2">
+    <table class="table w-70 border mt-2" style="justify-content: center;" id="table1">
 
-            </table>
+    </table>
+
+
+    <table class="table w-70 border mt-2 " style="justify-content: center;" id="table2">
+
+    </table>
 
 
 
-            <table class="table w-70 border mt-2 "  style="justify-content: center;" id="table3">
+    <table class="table w-70 border mt-2 " style="justify-content: center;" id="table3">
 
-            </table>
+    </table>
 
-            <table class="table w-70 border mt-2 " style="justify-content: center;" id="table4">
+    <table class="table w-70 border mt-2 " style="justify-content: center;" id="table4">
 
-            </table>
-    
+    </table>
+
 
 </body>
 
