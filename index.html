@@ -1329,7 +1329,7 @@
 
             if (bowlerWicket == 10) {
                 alert("Team All Out");
-                document.getElementById("hitted1").disabled = true;
+                // document.getElementById("hitted1").disabled = true;
                 document.getElementById("end").style.display = "none";
                 document.getElementById("result1").style.display = "block";
                 return false;
@@ -2026,7 +2026,7 @@
 
         <div class="d-flex flex-row justify-content-center my-4">
             <div class="input-group mb-3 w-25 px-3 ">
-                <button class="btn btn-primary" type="button" id="hitted1" onclick="hit1()">Bowl</button>
+                <button class="btn btn-primary" type="button"  id="hitted1" onclick="hit1()">Bowl</button>
                 <input type="text" class="form-control" placeholder="" readonly="true" id="shots1"
                     aria-label="Example text with button addon" aria-describedby="button-addon1">
             </div>
