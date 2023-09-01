@@ -1301,7 +1301,7 @@
             return shot3;
         }
 
-        let over = 5;
+        let over = 1;
         let ball = 6;
         let myOver = [];
         let currentBall = 0;
@@ -1460,7 +1460,7 @@
             }
         }
 
-        let over1 = 5;
+        let over1 = 1;
         let ball1 = 6;
         let myOver1 = [];
         let currentBall1 = 0;
@@ -1661,7 +1661,8 @@
             if (arrScore1.length == 0 || arrScore2.length == 0) {
                 alert("please play first game then show the score");
             } else {
-                let table = ` <thead>
+                let table = `<table class="table w-40 border mt-5">
+                     <thead>
                   <tr>
                     <th scope="col">Batter</th>
                     <th scope="col">R</th>
@@ -1683,10 +1684,11 @@
                     tr += `<td>${i.point}</td>`;
                     tr = tr + "</tr>";
                 };
-                table = table + tr + "</tbody>";
+                table = table + tr + "</tbody></table>";
                 document.getElementById("table1").innerHTML = table;
 
-                let table2 = ` <thead>
+                let table2 = ` <table class="table w-40 border mt-5">
+                    <thead>
                   <tr>
                     <th scope="col">Bowler</th>
                     <th scope="col">w</th>
@@ -1702,12 +1704,12 @@
                     tr1 += `<td>${i.point}</td>`;
                     tr1 = tr1 + "</tr>";
                 };
-                table2 = table2 + tr1 + "</tbody>";
+                table2 = table2 + tr1 + "</tbody></table>";
                 document.getElementById("table2").innerHTML = table2;
 
             }
-            document.getElementById("table1").style.display = "block";
-            document.getElementById("table2").style.display = "block";
+            document.getElementById("table1").style.display = "inline-table";
+            document.getElementById("table2").style.display = "inline-table";
             document.getElementById("table3").style.display = "none";
             document.getElementById("table4").style.display = "none";
 
@@ -1764,8 +1766,8 @@
                 document.getElementById("table4").innerHTML = table2;
             }
 
-            document.getElementById("table3").style.display = "block";
-            document.getElementById("table4").style.display = "block";
+            document.getElementById("table3").style.display = "inline-table";
+            document.getElementById("table4").style.display = "inline-table";
             document.getElementById("table1").style.display = "none";
             document.getElementById("table2").style.display = "none";
 
@@ -2065,27 +2067,27 @@
     </div>
 
 
-    <div>
+    
 
-            <table class="table" id="table1">
-
-            </table>
-
-
-            <table class="table" id="table2">
+            <table class="table w-70 border mt-2"  style="justify-content: center;"  id="table1">
 
             </table>
 
 
+            <table class="table w-70 border mt-2 "  style="justify-content: center;" id="table2">
 
-            <table class="table" id="table3">
+            </table>
+
+
+
+            <table class="table w-70 border mt-2 "  style="justify-content: center;" id="table3">
 
             </table>
 
-            <table class="table" id="table4">
+            <table class="table w-70 border mt-2 " style="justify-content: center;" id="table4">
 
             </table>
-    </div>
+    
 
 </body>
 
